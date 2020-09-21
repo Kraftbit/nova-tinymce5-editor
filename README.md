@@ -20,7 +20,7 @@ php artisan vendor:publish --provider="Kraftbit\NovaTinymce5Editor\FieldServiceP
 
 Now you have nova-tinymce5-editor.php file in your config folder. Edit TinyMCE options and toolbar here.
 
-Add your TinyMCE cloud API key her or to you .env file like this:
+Add your TinyMCE cloud API key here or to your .env file like this:
 
 ```bash
 TINYMCE_API_KEY=your-key-here
@@ -37,10 +37,10 @@ NovaTinymce5Editor::make('Body', 'body'),
 
 ## Available options
 
-You can pass arguments and TinyMCE options directly from a field. Here's example of available options:
+You can pass arguments and TinyMCE options directly from a field (but you need to include appropriate TinyMCE plugins to config). Here's example of available options:
 
 ```php
-NovaTinymce5Editor::make('Body')->id('body')->placeholder('Enter content here')->options(),
+NovaTinymce5Editor::make('Body')->id('body')->placeholder('Enter content here')->options(['toolbar' => [ 'undo redo | align | link table media | code']]),
 ```
 ## Integration with Media Library
 
