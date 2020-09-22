@@ -1,11 +1,23 @@
 {
     "name": "kraftbit/nova-tinymce5-editor",
     "description": "A Laravel Nova field.",
+    "homepage": "https://github.com/Kraftbit/nova-tinymce5-editor",
     "keywords": [
         "laravel",
-        "nova"
+        "nova",
+        "tinymce",
+        "editor",
+        "wysiwyg"
     ],
     "license": "MIT",
+    "authors": [
+        {
+            "name": "Mijo Džalto 'Apatrid'",
+            "email": "mijo@kraftbit.com",
+            "homepage": "https://kraftbit.com/",
+            "role": "Developer"
+        }
+    ],
     "require": {
         "php": ">=7.1.0"
     },
