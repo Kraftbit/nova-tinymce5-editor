@@ -47,13 +47,13 @@ For available options/plugins visit official TinyMCE 5 documentation.
 
 ## Integration with Media Library
 
-Nova TinyMCE 5 Editor field works well with [Nova Media Library](https://github.com/classic-o/nova-media-library). If you would like to insert images inline to editor content, you need to install Nova Media Library field first and add a callback field. Add "->id('body')" and "'mediaLibrary' => true" meta arguments to Nova TinyMCE5 Editor field. Here's example:
+Nova TinyMCE 5 Editor field works well with [Nova Media Library](https://github.com/classic-o/nova-media-library). If you would like to insert images from Media Library directly to editor content, you need to install Nova Media Library field first and add a Media Library JS callback field. To make it work, you need to add custom *id for TinyMCE field `->id('body')`, and meta argument `->withMeta(['mediaLibrary' => true])` and then pass the same editor *id to your Media Library callback field. In the example below we use 'body' for *id because that is the column name in our database:
 
 
 ```php
-NovaTinymce5Editor::make('Text content')->id('body')->withMeta(['mediaLibrary' => true]),
+NovaTinymce5Editor::make('Body')->id('body')->withMeta(['mediaLibrary' => true]),
 
-MediaLibrary::make('Insert image', 'js_callback_media_library_body')
+MediaLibrary::make('Insert image', 'js_callback_media_library')
 ->jsCallback('mediaLibrarySelectFiles', ['editor' => 'body'])->types(['Image']),
 ```
 
