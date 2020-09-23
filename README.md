@@ -37,18 +37,21 @@ NovaTinymce5Editor::make('Body', 'body'),
 
 ## Available options
 
-You can pass arguments and TinyMCE options directly from a field (but you need to include appropriate TinyMCE plugins to config). Here's example of available options:
+You can pass arguments and TinyMCE options directly from a field to customize your toolbar and plugins, like this:
 
 ```php
-NovaTinymce5Editor::make('Body')->id('body')->placeholder('Enter content here')->options(['toolbar' => [ 'undo redo | align | link table media | code']]),
+NovaTinymce5Editor::make('Body')->placeholder('Enter content here')
+->options(['toolbar' => ['undo redo | align | link | code'], 'plugins' => ['link code']]),
 ```
+For available options/plugins visit official TinyMCE 5 documentation.
+
 ## Integration with Media Library
 
-Nova TinyMCE 5 Editor field works well with [Nova Media Library](https://github.com/classic-o/nova-media-library). If you would like to insert images inline to editor content, you need to install Nova Media Library field first and add a callback field. Add "'mediaLibrary' => true" meta argument to Nova TinyMCE5 Editor field. Here's example:
+Nova TinyMCE 5 Editor field works well with [Nova Media Library](https://github.com/classic-o/nova-media-library). If you would like to insert images inline to editor content, you need to install Nova Media Library field first and add a callback field. Add "->id('body')" and "'mediaLibrary' => true" meta arguments to Nova TinyMCE5 Editor field. Here's example:
 
 
 ```php
-NovaTinymce5Editor::make('Body')->withMeta(['mediaLibrary' => true]),
+NovaTinymce5Editor::make('Text content')->id('body')->withMeta(['mediaLibrary' => true]),
 
 MediaLibrary::make('Insert image', 'js_callback_media_library_body')
 ->jsCallback('mediaLibrarySelectFiles', ['editor' => 'body'])->types(['Image']),
