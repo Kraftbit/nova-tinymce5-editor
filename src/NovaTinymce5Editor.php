@@ -2,10 +2,13 @@
 
 namespace Kraftbit\NovaTinymce5Editor;
 
+use Laravel\Nova\Fields\Expandable;
 use Laravel\Nova\Fields\Field;
 
 class NovaTinymce5Editor extends Field
 {
+    use Expandable;
+
     /**
      * The field's component.
      *
@@ -79,5 +82,17 @@ class NovaTinymce5Editor extends Field
         ]);
 
         return $this;
+    }
+
+    /**
+     * Prepare the element for JSON serialization.
+     *
+     * @return array
+     */
+    public function jsonSerialize()
+    {
+        return array_merge(parent::jsonSerialize(), [
+            'shouldShow' => $this->shouldBeExpanded(),
+        ]);
     }
 }
