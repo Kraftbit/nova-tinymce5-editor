@@ -13,9 +13,10 @@ class NovaTinymce5Editor extends Field
      */
     public $component = 'nova-tinymce5-editor';
 
-    public function __construct(string $name, $attribute = null)
+    public function __construct(string $name, $attribute = null, callable $resolveCallback = null)
     {
         parent::__construct($name, $attribute);
+        $this->resolveCallback = $resolveCallback;
 
         $this->withMeta([
             'options' => config('nova-tinymce5-editor.options', []),
