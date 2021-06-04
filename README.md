@@ -59,9 +59,14 @@ MediaLibrary::make('Insert image', 'js_callback_media_library')
 
 ### Screenshots
 
-![Nova TinyMCE 5 Editor](https://raw.githubusercontent.com/kraftbit/nova-tinymce5-editor/master/docs/screenshot_1.png)
+TinyMCE editor without inserted image
+![Nova TinyMCE 5 Editor](https://novapackages.com//storage/screenshots/kGTLSsRXw9yA57nkAFg2a3ntLh3clSrDKRGGSaY0.png)
 
-![Nova TinyMCE 5 Editor](https://raw.githubusercontent.com/kraftbit/nova-tinymce5-editor/master/docs/screenshot_2.png)
+TinyMCE editor with inserted image
+![Nova TinyMCE 5 Editor](https://novapackages.com//storage/screenshots/1aMkYKPgnLIRjObTV03mo2BBwa5KO3bcgwyEkRPs.png)
+
+Image file options
+![Nova TinyMCE 5 Editor](https://novapackages.com//storage/screenshots/XAVVvuLaAXfpNRul35ngTbGn4haLp6yDMHV0j5Yg.jpg)
 
 
 ## Contributing
