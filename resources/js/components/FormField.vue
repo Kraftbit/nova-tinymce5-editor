@@ -10,15 +10,16 @@
                 :toolbar="editorToolbar"
                 :class="errorClasses"
                 :placeholder="field.placeholder"
-                :id="field.id"
+                :id="id"
                 :name="field.name"
-                />
+                v-if="mounted"
+            />
         </template>
     </default-field>
 </template>
 
 <script>
-import { FormField, HandlesValidationErrors } from 'laravel-nova'
+import {FormField, HandlesValidationErrors} from 'laravel-nova'
 import Editor from '@tinymce/tinymce-vue'
 
 export default {
@@ -31,25 +32,27 @@ export default {
     },
 
     data() {
-            return {
-                    editorConfigInit: this.field.options.init,
-                    editorPlugins: this.field.options.plugins,
-                    editorToolbar: this.field.options.toolbar,
-                    apiKey: this.field.options.apiKey
-                }
-        },
+        return {
+            editorConfigInit: this.field.options.init,
+            editorPlugins: this.field.options.plugins,
+            editorToolbar: this.field.options.toolbar,
+            apiKey: this.field.options.apiKey,
+            id: null,
+            mounted: false
+        }
+    },
 
     computed: {
 
-        editorConfig: function() {
+        editorConfig: function () {
 
             let editorConfig = this.editorConfigInit
 
-            if(this.field.mediaLibrary == true){
+            if (this.field.mediaLibrary == true) {
                 editorConfig['selector'] = this.field.id
 
                 window.mediaLibrarySelectFiles = function (filesArray, options) {
-                    tinymce.get(options.editor).insertContent('<img src="'+ filesArray[0].url +'">');
+                    tinymce.get(options.editor).insertContent('<img src="' + filesArray[0].url + '">');
                 }
 
             }
@@ -80,5 +83,30 @@ export default {
             this.value = value
         }
     },
+
+    created() {
+        if (this.$parent.hasOwnProperty('activeLocale')) {
+            if (this.field.attribute.includes(`.${this.$parent.activeLocale}`)) {
+                this.id = this.field.id
+                this.mounted = true
+            }
+            this.$watch('$parent.activeLocale', (newVal, oldVal) => {
+                if (newVal !== oldVal) {
+                    if (this.field.attribute.includes(`.${oldVal}`)) {
+                        this.id = null
+                        this.mounted = false
+                    } else {
+                        this.$nextTick(() => {
+                            this.id = this.field.id
+                            this.mounted = true
+                        })
+                    }
+                }
+            })
+        } else {
+            this.id = this.field.id
+            this.mounted = true
+        }
+    }
 }
 </script>
